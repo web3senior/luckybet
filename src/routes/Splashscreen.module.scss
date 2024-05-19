@@ -1,3 +1,5 @@
+@import './../styles/components/responsive';
+
 .section {
   position: fixed;
   inset: 0;
@@ -26,6 +28,7 @@
   figure.logo {
     img {
       width: 25vw;
+      max-width: 20rem;
     }
   }
 
@@ -34,9 +37,14 @@
     top: 50%;
     transform: translateY(20vw);
 
+    @include small-up(){
+      transform: translateY(8vw);
+    }
+
     figure {
       img {
         width: 25vw;
+             max-width: 20rem;
         margin: 0 auto;
       }
     }
@@ -45,6 +53,9 @@
       color: #f3baa2;
       text-align: center;
       font-size: 4.5vw;
+        @include small-up(){
+          font-size: 1.5vw;
+    }
     }
   }
 }
