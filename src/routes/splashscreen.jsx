@@ -13,7 +13,6 @@ export default function Splashscreen() {
     }
   }, [])
 
-  return <></>
   return (
     <section className={`${styles.section} animate__animated`} data-name={import.meta.env.VITE_NAME} ref={splashscreenRef}>
       <figure className={`${styles['logo']}`}>
