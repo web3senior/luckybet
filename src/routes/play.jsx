@@ -92,6 +92,9 @@ function Play({ title }) {
   const playClick = () => {
     var audio = new Audio(clickSounds)
     audio.play()
+    if ('vibrate' in navigator) {
+      navigator.vibrate(200)
+    }
   }
 
   useEffect(() => {}, [])
