@@ -226,7 +226,7 @@ function Home({ title }) {
         </div>
 
         <div className={`__container h-inherit d-flex flex-column align-items-center justify-content-center`} data-width={`large`}>
-          <nav className={`d-flex flex-column align-items-center justify-content-center mt-40`}>
+          <nav className={`d-flex flex-column align-items-center justify-content-center`}>
             <button onClick={() => navigate(`/pools`)}>Pools</button>
             <button onClick={() => handleShowModal('rules')}>Rules</button>
             <button onClick={() => handleShowModal('guide')}>Guide</button>
