@@ -15,6 +15,14 @@
     left: 50%;
     bottom: 1rem;
     transform: translateX(-50%);
+
+    &:first-child {
+      top: 1rem;
+    }
+
+    &:last-child {
+      bottom: 1rem;
+    }
   }
 
   figure.logo {
@@ -54,7 +62,7 @@
     gap: 14.39px;
     width: 180px;
     height: 104px;
-    color: var(--color-secondary);
+    color: var(--color-tertiary);
     font-family: 'The Baby Monster';
     font-size: 1.4rem;
     font-weight: bold;

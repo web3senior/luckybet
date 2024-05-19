@@ -5,7 +5,10 @@ import MaterialIcon from './helper/MaterialIcon'
 import Shimmer from './helper/Shimmer'
 import toast, { Toaster } from 'react-hot-toast'
 import { useAuth, web3, _ } from './../contexts/AuthContext'
+import Logo from './../../src/assets/logo.svg'
 import Aratta from './../../src/assets/aratta.svg'
+import Luckybet from './../../src/assets/luckybet.svg'
+import Slogan from './../../src/assets/slogan.svg'
 import Web3 from 'web3'
 import ABI from '../abi/luckybet.json'
 import party from 'party-js'
@@ -177,6 +180,9 @@ function Home({ title }) {
           `Lucky Bet is an international blockchain-based lottery game operating on the LUSKO blockchain. It serves as a community-building activity to 1. Support development projects and 2. a gateway that introduces blockchain-based games to the general crypto token-holding public. It also helps to demystify complex concepts and foster broader adoption of blockchain-based applications.`
         )
         break
+      case 'guide':
+        setModalContent(`Guide content here...`)
+        break
       default:
         setModalContent(`Unknown`)
         break
@@ -210,9 +216,16 @@ function Home({ title }) {
         )}
 
         <div className={`__container h-inherit d-flex flex-column align-items-center justify-content-center`} data-width={`large`}>
+          <figure className={`d-flex flex-column align-items-center justify-content-center mb-40`}>
+            <img alt={`Lukso`} src={Logo} />
+            <img alt={`Lukso`} src={Luckybet} />
+            <img alt={`Lukso`} src={Slogan} />
+          </figure>
+
           <div className={`d-flex flex-column align-items-center justify-content-center mt-10`} style={{ '--data-width': '85100%px' }}>
             <button onClick={() => navigate(`/pools`)}>Pools</button>
             <button onClick={() => handleShowModal('rules')}>Rules</button>
+            <button onClick={() => handleShowModal('guide')}>Guide</button>
             <button onClick={() => window.open(`https://aratta.dev`)}>Contract</button>
             <button onClick={() => handleShowModal('about')}>About</button>
           </div>
