@@ -1,0 +1,50 @@
+.section {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-flow: nowrap column;
+  place-content: center;
+  place-items: center;
+  background: radial-gradient(211.74% 45.07% at 50% 50%, #f16d11 0%, #a63717 99.14%);
+  font-family: 'The Baby Monster';
+  font-style: normal;
+  font-weight: 400;
+  z-index: 9999;
+  isolation: isolate;
+
+  &:before {
+    content: '';
+    background: url('./../assets/stripe.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+  }
+
+  figure.logo {
+    img {
+      width: 25vw;
+    }
+  }
+
+  .name {
+    position: absolute;
+    top: 50%;
+    transform: translateY(20vw);
+
+    figure {
+      img {
+        width: 25vw;
+        margin: 0 auto;
+      }
+    }
+
+    h2 {
+      color: #f3baa2;
+      text-align: center;
+      font-size: 4.5vw;
+    }
+  }
+}

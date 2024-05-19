@@ -1,0 +1,23 @@
+{
+  "semi": false,
+  "singleQuote": true,
+  "printWidth": 200,
+  "overrides": [
+    {
+      "files": "*.test.js",
+      "options": {
+        "semi": true
+      }
+    },
+    {
+      "files": ["*.html", "*.xhtml"],
+      "options": {
+        "tabWidth": 4
+      }
+    },
+    {
+      "files": ["*.jsx"],
+      "options": {}
+    }
+  ]
+}

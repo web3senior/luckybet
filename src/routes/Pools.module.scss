@@ -1,0 +1,147 @@
+@import './../styles/components/responsive';
+
+.section {
+  height: inherit;
+  user-select: none;
+  background-color: var(--color-primary);
+  overflow: hidden;
+  @include small-down() {
+    //background: #fd1669;
+  }
+
+  a {
+    font-weight: bold;
+    color: #088ae9;
+  }
+
+  figure.logo {
+    text-align: center;
+
+    img {
+      margin: 0 auto;
+      width: 75px;
+    }
+
+    figcaption {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 1rem;
+      font-size: 16px;
+    }
+  }
+
+  p.message {
+    opacity: 0.9;
+    text-wrap: balance;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+
+    @include small-down() {
+      font-size: 13px;
+    }
+  }
+
+  button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 16.1856px;
+    gap: 14.39px;
+    width: 180px;
+    height: 104px;
+    color: var(--color-secondary);
+    font-size: 1rem;
+    background: none;
+    color: var(--color-tertiary);
+    background-image: url('./../assets/btn-border.svg');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
+
+    &[disabled] {
+      opacity: 0.4;
+      color: #212121;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.grid {
+  gap: 0.7rem;
+}
+
+.grid__item {
+  position: relative;
+  padding: 0.9rem 0.8rem;
+  border-radius: var(--global-border-radius);
+  opacity: 1;
+  transition-property: box-shadow, transform;
+  transition-duration: 400ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.29, 0.99);
+
+  &:hover {
+    background-color: #f4f4f4;
+    .close-btn {
+      i {
+        top: 0;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  padding: 2rem;
+  z-index: 999;
+  isolation: isolate;
+  font-family: Open Sans;
+
+  &__content {
+    position: relative;
+    width: 100%;
+    color: var(--white);
+    font-size: 3.1vw;
+    opacity: 0.6;
+    text-align: justify;
+    text-wrap: balance;
+
+    span {
+      position: relative;
+      left: 0;
+      margin-bottom: 1rem;
+      display: block;
+      width: 80px;
+      height: 80px;
+      color: var(--white);
+      background-image: url('./../assets/icon-arrow.svg');
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      cursor: pointer;
+
+      &:active {
+        transform: scale(0.8);
+      }
+    }
+  }
+}
