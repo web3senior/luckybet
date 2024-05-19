@@ -5,7 +5,7 @@ import MaterialIcon from './helper/MaterialIcon'
 import Shimmer from './helper/Shimmer'
 import toast, { Toaster } from 'react-hot-toast'
 import { useAuth, web3, _ } from './../contexts/AuthContext'
-import Logo from './../../src/assets/logo.svg'
+import Aratta from './../../src/assets/aratta.svg'
 import Web3 from 'web3'
 import ABI from '../abi/luckybet.json'
 import party from 'party-js'
@@ -168,10 +168,14 @@ function Home({ title }) {
     setShowModal((showModal) => !showModal)
     switch (action) {
       case 'rules':
-        setModalContent(`After a successful test of the alpha and beta versions of Lucky Bet, management will work closely with legal counsel to navigate complex regulatory environments and mitigate legal risks. Moving forward, game administrators will stay informed about changes in gambling regulations globally and adapt strategies accordingly.`)
+        setModalContent(
+          `After a successful test of the alpha and beta versions of Lucky Bet, management will work closely with legal counsel to navigate complex regulatory environments and mitigate legal risks. Moving forward, game administrators will stay informed about changes in gambling regulations globally and adapt strategies accordingly.`
+        )
         break
-          case 'about':
-        setModalContent(`Lucky Bet is an international blockchain-based lottery game operating on the LUSKO blockchain. It serves as a community-building activity to 1. Support development projects and 2. a gateway that introduces blockchain-based games to the general crypto token-holding public. It also helps to demystify complex concepts and foster broader adoption of blockchain-based applications.`)
+      case 'about':
+        setModalContent(
+          `Lucky Bet is an international blockchain-based lottery game operating on the LUSKO blockchain. It serves as a community-building activity to 1. Support development projects and 2. a gateway that introduces blockchain-based games to the general crypto token-holding public. It also helps to demystify complex concepts and foster broader adoption of blockchain-based applications.`
+        )
         break
       default:
         setModalContent(`Unknown`)
@@ -205,13 +209,19 @@ function Home({ title }) {
           </>
         )}
 
-        <div className={`__container h-inherit d-flex flex-column align-items-center justify-content-center`} data-width={`large`}>
+        <div className={`__container h-inherit d-flex flex-column align-items-center justify-content-between`} data-width={`large`}>
           <div className={`d-flex flex-column align-items-center justify-content-center mt-10`} style={{ '--data-width': '85100%px' }}>
             <button onClick={() => navigate(`/pools`)}>Pools</button>
             <button onClick={() => handleShowModal('rules')}>Rules</button>
             <button onClick={() => window.open(`https://aratta.dev`)}>Contract</button>
             <button onClick={() => handleShowModal('about')}>About</button>
           </div>
+
+          <Link to={`//aratta.dev`} target={`_blank`}>
+            <figure>
+              <img alt={import.meta.env.VITE_AUTHOR} src={Aratta} />
+            </figure>
+          </Link>
         </div>
       </section>
     </>

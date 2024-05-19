@@ -5,6 +5,7 @@
   user-select: none;
   background-color: var(--color-primary);
   overflow: hidden;
+  padding: 2rem 0;
   @include small-down() {
     //background: #fd1669;
   }
