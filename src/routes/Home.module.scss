@@ -10,6 +10,10 @@
     //background: #fd1669;
   }
 
+  nav {
+    row-gap: .5rem;
+  }
+
   a {
     position: fixed;
     left: 50%;
@@ -41,27 +45,14 @@
     }
   }
 
-  p.message {
-    opacity: 0.9;
-    text-wrap: balance;
-    text-align: center;
-    line-height: 20px;
-    font-size: 12px;
-
-    @include small-down() {
-      font-size: 13px;
-    }
-  }
-
   button {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 0px 16.1856px;
-    gap: 14.39px;
     width: 180px;
-    height: 104px;
+    height: 80px;
     color: var(--color-tertiary);
     font-family: 'The Baby Monster';
     font-size: 1.4rem;

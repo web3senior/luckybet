@@ -216,19 +216,19 @@ function Home({ title }) {
         )}
 
         <div className={`__container h-inherit d-flex flex-column align-items-center justify-content-center`} data-width={`large`}>
-          <figure className={`d-flex flex-column align-items-center justify-content-center mb-40`}>
+          <figure className={`d-flex flex-column align-items-center justify-content-center`}>
             <img alt={`Lukso`} src={Logo} />
             <img alt={`Lukso`} src={Luckybet} />
             <img alt={`Lukso`} src={Slogan} />
           </figure>
 
-          <div className={`d-flex flex-column align-items-center justify-content-center mt-10`} style={{ '--data-width': '85100%px' }}>
+          <nav className={`d-flex flex-column align-items-center justify-content-center mt-40`}>
             <button onClick={() => navigate(`/pools`)}>Pools</button>
             <button onClick={() => handleShowModal('rules')}>Rules</button>
             <button onClick={() => handleShowModal('guide')}>Guide</button>
             <button onClick={() => window.open(`https://aratta.dev`)}>Contract</button>
             <button onClick={() => handleShowModal('about')}>About</button>
-          </div>
+          </nav>
 
           <Link to={`//aratta.dev`} target={`_blank`}>
             <figure>
