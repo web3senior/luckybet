@@ -215,13 +215,17 @@ function Home({ title }) {
           </>
         )}
 
-        <div className={`__container h-inherit d-flex flex-column align-items-center justify-content-center`} data-width={`large`}>
-          <figure className={`d-flex flex-column align-items-center justify-content-center`}>
+        <div className={`${styles['logo']} d-flex flex-row align-items-center justify-content-between`}>
+          <figure className={`d-flex flex-row align-items-center justify-content-center`}>
             <img alt={`Lukso`} src={Logo} />
+          </figure>
+          <figure>
             <img alt={`Lukso`} src={Luckybet} />
             <img alt={`Lukso`} src={Slogan} />
           </figure>
+        </div>
 
+        <div className={`__container h-inherit d-flex flex-column align-items-center justify-content-center`} data-width={`large`}>
           <nav className={`d-flex flex-column align-items-center justify-content-center mt-40`}>
             <button onClick={() => navigate(`/pools`)}>Pools</button>
             <button onClick={() => handleShowModal('rules')}>Rules</button>

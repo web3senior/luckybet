@@ -5,9 +5,21 @@
   user-select: none;
   background-color: var(--color-primary);
   overflow: hidden;
-  padding: 2rem 0;
+  padding: 1rem 0;
   @include small-down() {
     //background: #fd1669;
+  }
+
+  .logo {
+    padding: 0 1rem;
+    
+    figure {
+      &:first-child {
+        img {
+          width: 48px;
+        }
+      }
+    }
   }
 
   nav {
