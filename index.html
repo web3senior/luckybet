@@ -5,13 +5,13 @@
         <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>%VITE_TITLE%</title>
-        
+
         <!-- Meta -->
         <meta name="keywords" content="%VITE_KEYWORDS%" />
         <meta name="description" content="%VITE_DESCRIPTION%" />
         <meta name="author" content="%VITE_AUTHOR%" />
         <meta name="robots" content="index, follow" />
-        <meta name="theme-color" content="#FD1669" />
+        <meta name="theme-color" content="#A63717" />
 
         <!-- Disable Cache -->
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -50,5 +50,19 @@
     <body>
         <div id="root"></div>
         <script type="module" src="/src/main.jsx"></script>
+        <script>
+            if ('serviceWorker' in navigator) {
+                addEventListener('load', async () => {
+                    navigator.serviceWorker
+                        .register('./sw.js')
+                        .then((registration) => {
+                            console.log('Hooray. Registration successful, scope is:', registration.scope)
+                        })
+                        .catch((error) => {
+                            console.warn('Whoops. Service worker registration failed, error:', error)
+                        })
+                })
+            }
+        </script>
     </body>
 </html>
