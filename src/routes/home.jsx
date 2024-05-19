@@ -209,7 +209,7 @@ function Home({ title }) {
           </>
         )}
 
-        <div className={`__container h-inherit d-flex flex-column align-items-center justify-content-between`} data-width={`large`}>
+        <div className={`__container h-inherit d-flex flex-column align-items-center justify-content-center`} data-width={`large`}>
           <div className={`d-flex flex-column align-items-center justify-content-center mt-10`} style={{ '--data-width': '85100%px' }}>
             <button onClick={() => navigate(`/pools`)}>Pools</button>
             <button onClick={() => handleShowModal('rules')}>Rules</button>

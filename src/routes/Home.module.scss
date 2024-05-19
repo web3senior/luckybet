@@ -11,8 +11,10 @@
   }
 
   a {
-    font-weight: bold;
-    color: #088ae9;
+    position: fixed;
+    left: 50%;
+    bottom: 1rem;
+    transform: translateX(-50%);
   }
 
   figure.logo {
@@ -142,7 +144,7 @@
       cursor: pointer;
 
       &:active {
-        transform: scale(.8);
+        transform: scale(0.8);
       }
     }
   }
