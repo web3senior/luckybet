@@ -271,6 +271,10 @@ If you do not have a Universal Profile follow these steps<br/>
         </div>
 
         <div className={`__container h-inherit d-flex flex-column align-items-center justify-content-center`} data-width={`large`}>
+          <small className={`text-white text-center ml-10 mr-10 ms-fontSize-18`} style={{fontFamily:'-moz-initial', opacity: '.8'}}>
+          WELCOME TO LUCKYBET WORLD JACKPOT!
+THE EXCITING NEW LOTTERY-STYLE CHALLENGE GAME ON THE LUKSO BLOCKCHAIN
+          </small>
           <nav className={`d-flex flex-column align-items-center justify-content-center`}>
             <button onClick={() => navigate(`/pools`)}>Pools</button>
             <button onClick={() => handleShowModal('rules')}>Rules</button>
