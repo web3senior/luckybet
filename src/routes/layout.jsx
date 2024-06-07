@@ -41,7 +41,9 @@ export default function Root() {
   const location = useLocation()
 
 
-
+useEffect(()=>{
+  auth.connectWallet()
+},[])
   return (
     <>
       <Toaster />

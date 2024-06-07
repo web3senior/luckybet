@@ -171,17 +171,62 @@ function Home({ title }) {
     setShowModal((showModal) => !showModal)
     switch (action) {
       case 'rules':
-        setModalContent(
-          `After a successful test of the alpha and beta versions of Lucky Bet, management will work closely with legal counsel to navigate complex regulatory environments and mitigate legal risks. Moving forward, game administrators will stay informed about changes in gambling regulations globally and adapt strategies accordingly.`
-        )
+        setModalContent(`
+You must be 18 years of age to play<br/>
+$LYX tokens must be used to enter<br/>
+All players must click the “I agree with the terms of this game box”<br/>
+Games operate on a 7-day cycle unless specified<br/>
+All Jackpots will automatically be paid to each winner’s wallet through the verified Luckybet smart contract on LUKSO
+You must agree to the terms by clicking the “I Agree Terms Box”
+          `)
         break
       case 'about':
-        setModalContent(
-          `Lucky Bet is an international blockchain-based lottery game operating on the LUSKO blockchain. It serves as a community-building activity to 1. Support development projects and 2. a gateway that introduces blockchain-based games to the general crypto token-holding public. It also helps to demystify complex concepts and foster broader adoption of blockchain-based applications.`
-        )
+        setModalContent(`
+Luckybet is an international blockchain-based lottery game operating on the LUSKO blockchain. It is a community-building activity and a gateway to demystifying blockchain development concepts.  Most importantly, it helps to foster broader adoption of blockchain-based applications to the general public.
+<br/><b>Tokens</b><br/>
+The initial token supporting the game is the LUKSO $LYX native token. Players will purchase tickets using this token. The prize pool jackpot will be paid out in $LYX tokens.
+<br/><b>Features</b><br/>
+The game features a user-friendly interface. Features include: <br/>
+■ Challenge games<br/>
+■ Private and public pools<br/>
+■ Double prize games<br/>
+■ Global Grand Prize games<br/>
+<br/><b>Transparency</b><br/>
+Luckybet offers transparency, security, and fairness possible through smart contracts and blockchain technology.<br/>
+
+<b>Accessibility</b><br/>
+By accepting crypto tokens for ticket purchases, Luckybet opens the market up for participation to anyone who holds crypto assets worldwide, regardless of geographic location or banking access. 
+
+          `)
         break
       case 'guide':
-        setModalContent(`Guide content here...`)
+        setModalContent(`
+<b>How to Play</b><br/>
+
+1. Click the “Connect Universal Profile” button. (Install here)<br/>
+2. Click “Purchase Tickets” to enter a pool. (See the start & end dates of the pool)<br/>
+3. Select the number of tickets from the pulldown menu.<br/>
+4. Confirm the transaction. (You will get a message saying “Success”)<br/>
+5. Select what region of the world you reside in from the pulldown menu. <br/>
+6. Post the “Share link” that lets your friends know you entered the Luckybet game.<br/>
+7. Check the “I agree to terms” box.<br/>
+8. Then Tweet This Message:<br/>
+“I have entered the Luckybet pool to win a jackpot of $LYX tokens
+At: https://luckybet.pink/
+“WISH ME LUCK!”
+#LUKSO #LuckyBet #game #web3 #lottery #blockchain
+
+<br/><b>Universal Profile Registration</b><br/>
+ 
+All players must complete a Universal Profile on the LUKSO application. 
+If you do not have a Universal Profile follow these steps<br/>
+
+1. Complete profile here: https://universalprofile.cloud/?network=mainnet<br/>
+2. You should see the extension titled "Universal Profile Browser Extension" by LUKSO Blockchain GmbH.<br/>
+3. Click on the "Add to Chrome" button.<br/>
+4. A confirmation window will appear. Click on "Add extension" to confirm the installation.<br/>
+5. After completing, connect your profile to the Luckybet application at: https://luckybet.pink/<br/>
+          `)
         break
       default:
         setModalContent(`Unknown`)
@@ -209,7 +254,7 @@ function Home({ title }) {
             <div className={styles.modal}>
               <div className={styles.modal__content}>
                 <span onMouseDown={() => setShowModal(!showModal)} />
-                {modalContent}
+                <div dangerouslySetInnerHTML={{__html: modalContent}} />
               </div>
             </div>
           </>
