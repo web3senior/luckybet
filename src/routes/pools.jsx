@@ -139,16 +139,15 @@ function Pools({ title }) {
     return false
   }
 
-  const getAppList = async () => {
-    let web3 = new Web3(`https://rpc.lukso.gateway.fm`)
+  const getPoolList = async () => {
     web3.eth.defaultAccount = auth.wallet
-    const UpstoreContract = new web3.eth.Contract(ABI, import.meta.env.VITE_UPSTORE_CONTRACT_MAINNET)
-    return await UpstoreContract.methods.getAppList().call()
+    const contract = new web3.eth.Contract(ABI, import.meta.env.VITE_LUCKYBET_CONTRACT_TESTNET)
+    return await contract.methods.pool(0).call()
   }
 
   const getLike = async (appId) => {
     let web3 = new Web3(import.meta.env.VITE_RPC_URL)
-    const UpstoreContract = new web3.eth.Contract(ABI, import.meta.env.VITE_UPSTORE_CONTRACT_MAINNET)
+    const UpstoreContract = new web3.eth.Contract(ABI, import.meta.env.VITE_LUCKYBET_CONTRACT_TESTNET)
     return await UpstoreContract.methods.getLikeTotal(appId).call()
   }
 
@@ -185,13 +184,11 @@ function Pools({ title }) {
   }
 
   useEffect(() => {
-    // getAppList().then(async (res) => {
-    //   const responses = await Promise.all(res[0].map(async (item) => Object.assign(await fetchIPFS(item.metadata), item, { like: web3.utils.toNumber(await getLike(item.id)) })))
-    //   setApp(responses.filter((item) => item.status))
-    //   setBackupApp(responses)
-    //   setIsLoading(false)
-    // })
-    setPools([{ name: 'Euro Zone' }, { name: 'The Americas' }, { name: 'Gold Rush' }, { name: 'Blockchain Betty' }])
+    getPoolList().then(async (res) => {
+      console.log(res);
+      setPools([res])
+      setIsLoading(false)
+    })
   }, [])
 
   return (
@@ -199,10 +196,11 @@ function Pools({ title }) {
       <section className={styles.section}>
         <div className={`__container h-inherit d-flex flex-column align-items-center justify-content-center`} data-width={`large`}>
           <div className={`d-flex flex-column align-items-center justify-content-center mt-10`}>
-            {pools.map((item) => {
+            <h3 className='text-white'>Active pool:</h3>
+            {pools.map((item, i) => {
               return (
-                <Link to={`/play/0x0000000000000000000000000000000000000000000000000000000000000001`}>
-                  <button>{item.name}</button>
+                <Link key={i} to={`/play/${item.id}`}>
+                  <button>{item.metadata}</button>
                 </Link>
               )
             })}

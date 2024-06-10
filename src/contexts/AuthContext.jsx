@@ -6,11 +6,12 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import LSP0ERC725Account from '@lukso/lsp-smart-contracts/artifacts/LSP0ERC725Account.json'
 import toast, { Toaster } from 'react-hot-toast'
 import Web3 from 'web3'
+import ABI from '../abi/luckybet.json'
 
-export const PROVIDER = window.ethereum
+export const PROVIDER = window.lukso
 export const web3 = new Web3(PROVIDER)
-export const _ = web3.utils._
-
+export const _ = web3.utils
+export const contract = new web3.eth.Contract(ABI, import.meta.env.VITE_LUCKYBET_CONTRACT_TESTNET)
 export const AuthContext = React.createContext()
 export function useAuth() {
   return useContext(AuthContext)
@@ -108,7 +109,7 @@ export function AuthProvider({ children }) {
       fetchProfile(accounts[0]).then((res) => setProfile(res))
       toast.dismiss(loadingToast)
       toast.success(`UP successfuly connected`)
-      navigate(`/`)
+      //navigate(`/`)
       return accounts[0]
     } catch (error) {
       toast.error(`The provider could not be found.`)
@@ -122,6 +123,7 @@ export function AuthProvider({ children }) {
         if (addr !== undefined) {
           setWallet(addr)
           fetchProfile(addr).then((res) => setProfile(res))
+          web3.eth.defaultAccount = auth.wallet
         }
       })
     }

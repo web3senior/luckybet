@@ -227,3 +227,47 @@ color: #FAB43C;
     transform: scale(1.1);
   }
 }
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  padding: 2rem;
+  z-index: 999;
+  isolation: isolate;
+  font-family: Open Sans;
+
+  &__content {
+    position: relative;
+    width: 100%;
+    color: var(--white);
+    font-size: 3.1vw;
+    opacity: 0.6;
+
+    ul {
+      list-style-type: disc;
+    }
+
+    span {
+      position: relative;
+      left: 0;
+      margin-bottom: 1rem;
+      display: block;
+      width: 80px;
+      height: 80px;
+      color: var(--white);
+      background-image: url('./../assets/icon-arrow.svg');
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      cursor: pointer;
+
+      &:active {
+        transform: scale(0.8);
+      }
+    }
+  }
+}

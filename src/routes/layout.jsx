@@ -42,7 +42,7 @@ export default function Root() {
 
 
 useEffect(()=>{
-  auth.connectWallet()
+
 },[])
   return (
     <>

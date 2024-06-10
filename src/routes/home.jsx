@@ -9,6 +9,7 @@ import Logo from './../../src/assets/logo.svg'
 import Aratta from './../../src/assets/aratta.svg'
 import Luckybet from './../../src/assets/luckybet.svg'
 import Slogan from './../../src/assets/slogan.svg'
+import WelcomeBox from './../../src/assets/welcome-box.png'
 import Web3 from 'web3'
 import ABI from '../abi/luckybet.json'
 import party from 'party-js'
@@ -172,12 +173,15 @@ function Home({ title }) {
     switch (action) {
       case 'rules':
         setModalContent(`
-You must be 18 years of age to play<br/>
-$LYX tokens must be used to enter<br/>
-All players must click the “I agree with the terms of this game box”<br/>
-Games operate on a 7-day cycle unless specified<br/>
-All Jackpots will automatically be paid to each winner’s wallet through the verified Luckybet smart contract on LUKSO
-You must agree to the terms by clicking the “I Agree Terms Box”
+<ul>
+	<li>You must be 18 years of age to play</li>
+	<li>$LYX tokens must be used to enter</li>
+	<li>All players must click the &ldquo;I agree with the terms of this game box&rdquo;</li>
+	<li>Games operate on a 7-day cycle unless specified</li>
+	<li>All Jackpots will automatically be paid to each winner&rsquo;s wallet through the verified Luckybet smart contract on LUKSO</li>
+	<li>You must agree to the terms by clicking the &ldquo;I Agree Terms Box&rdquo;</li>
+</ul>
+
           `)
         break
       case 'about':
@@ -271,10 +275,9 @@ If you do not have a Universal Profile follow these steps<br/>
         </div>
 
         <div className={`__container h-inherit d-flex flex-column align-items-center justify-content-center`} data-width={`large`}>
-          <small className={`text-white text-center ml-10 mr-10 ms-fontSize-18`} style={{fontFamily:'-moz-initial', opacity: '.8'}}>
-          WELCOME TO LUCKYBET WORLD JACKPOT!
-THE EXCITING NEW LOTTERY-STYLE CHALLENGE GAME ON THE LUKSO BLOCKCHAIN
-          </small>
+          <figure className={`mb-10`}>
+            <img src={WelcomeBox}/>
+          </figure>
           <nav className={`d-flex flex-column align-items-center justify-content-center`}>
             <button onClick={() => navigate(`/pools`)}>Pools</button>
             <button onClick={() => handleShowModal('rules')}>Rules</button>
