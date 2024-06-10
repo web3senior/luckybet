@@ -196,7 +196,7 @@ function Pools({ title }) {
       <section className={styles.section}>
         <div className={`__container h-inherit d-flex flex-column align-items-center justify-content-center`} data-width={`large`}>
           <div className={`d-flex flex-column align-items-center justify-content-center mt-10`}>
-            <h3 className='text-white'>Active pool:</h3>
+            <h3 className='text-white'>Active pool</h3>
             {pools.map((item, i) => {
               return (
                 <Link key={i} to={`/play/${item.id}`}>

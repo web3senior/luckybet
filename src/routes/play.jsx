@@ -72,10 +72,6 @@ function Play({ title }) {
       toast.dismiss(t)
     }
     })
-
-    
-
-
   }
 
   const handleWithdraw = async () => {
