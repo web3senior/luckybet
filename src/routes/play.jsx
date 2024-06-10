@@ -63,6 +63,8 @@ function Play({ title }) {
             count: party.variation.range(20, 40),
             shapes: ['star', 'roundedSquare'],
           })
+
+          toast.success(`Your ticket has been purchased 🥳.`)
         })
     } catch (error) {
       console.error(error)
@@ -155,7 +157,7 @@ The Gold Rush pool is our grand pool and overall world jackpot. Players worldwid
           `)
         break
         case 'users':
-          
+
           setModalContent(`
   <p>
   The Gold Rush pool is our grand pool and overall world jackpot. Players worldwide can purchase tickets to enter the grand prize jackpot. The Pink Rush pool tickets are premium tickets and are 2 $LYX tokens to enter.
