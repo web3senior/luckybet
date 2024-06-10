@@ -31,6 +31,7 @@ function Play({ title }) {
   const params = useParams()
   const [pools, setPools] = useState([])
   const [showModal, setShowModal] = useState(false)
+  const [modalContent, setModalContent] = useState('')
   const fetchIPFS = async (CID) => {
     try {
       const response = await fetch(`${import.meta.env.VITE_IPFS_GATEWAY}${CID}`)
@@ -44,16 +45,15 @@ function Play({ title }) {
   }
 
   const handleBuyTicket = async () => {
-    auth.connectWallet()
+
+    auth.connectWallet().then(async addr =>{
 
     const t = toast.loading(`Waiting for transaction's confirmation`)
-
-    let count = document.querySelector(`[name='count']`).value
-
+    const count = document.querySelector(`[name='count']`).value
     try {
       return await contract.methods
         .play('0x0000000000000000000000000000000000000000000000000000000000000001',count)
-        .send({ from: auth.wallet ,value: _.toWei(count, 'ether'),})
+        .send({ from: addr ,value: _.toWei(count, 'ether'),})
         .then((res) => {
           console.log(res)
           toast.dismiss(t)
@@ -68,6 +68,11 @@ function Play({ title }) {
       console.error(error)
       toast.dismiss(t)
     }
+    })
+
+    
+
+
   }
 
   const handleWithdraw = async () => {
@@ -142,19 +147,21 @@ function Play({ title }) {
   const handleShowModal = (action) => {
     setShowModal((showModal) => !showModal)
     switch (action) {
-      case 'rules':
+      case 'play':
         setModalContent(`
-<ul>
-	<li>You must be 18 years of age to play</li>
-	<li>$LYX tokens must be used to enter</li>
-	<li>All players must click the &ldquo;I agree with the terms of this game box&rdquo;</li>
-	<li>Games operate on a 7-day cycle unless specified</li>
-	<li>All Jackpots will automatically be paid to each winner&rsquo;s wallet through the verified Luckybet smart contract on LUKSO</li>
-	<li>You must agree to the terms by clicking the &ldquo;I Agree Terms Box&rdquo;</li>
-</ul>
-
+<p>
+The Gold Rush pool is our grand pool and overall world jackpot. Players worldwide can purchase tickets to enter the grand prize jackpot. The Pink Rush pool tickets are premium tickets and are 2 $LYX tokens to enter.
+</p>
           `)
         break
+        case 'users':
+          
+          setModalContent(`
+  <p>
+  The Gold Rush pool is our grand pool and overall world jackpot. Players worldwide can purchase tickets to enter the grand prize jackpot. The Pink Rush pool tickets are premium tickets and are 2 $LYX tokens to enter.
+  </p>
+            `)
+          break
       default:
         setModalContent(`Unknown`)
         break
@@ -243,16 +250,17 @@ function Play({ title }) {
           <li
             onClick={() => {
               playClick()
+              toast.error(`Will announce the winner soon`)
             }}
           />
           <li
             onClick={() => {
-              playClick()
+             handleShowModal(`play`)
             }}
           />
           <li
             onClick={() => {
-              playClick()
+              handleShowModal(`users`)
             }}
           />
           {/* <li
