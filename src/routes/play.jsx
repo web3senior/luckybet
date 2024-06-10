@@ -65,6 +65,7 @@ function Play({ title }) {
           })
 
           toast.success(`Your ticket has been purchased 🥳.`)
+          window.location.reload()
         })
     } catch (error) {
       console.error(error)
