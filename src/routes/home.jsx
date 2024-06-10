@@ -282,7 +282,7 @@ If you do not have a Universal Profile follow these steps<br/>
             <button onClick={() => navigate(`/pools`)}>Pools</button>
             <button onClick={() => handleShowModal('rules')}>Rules</button>
             <button onClick={() => handleShowModal('guide')}>Guide</button>
-            <button onClick={() => window.open(`https://aratta.dev`)}>Contract</button>
+            <button onClick={() => window.open(`https://explorer.execution.testnet.lukso.network/address/${import.meta.env.VITE_LUCKYBET_CONTRACT_TESTNET}`)}>Contract</button>
             <button onClick={() => handleShowModal('about')}>About</button>
           </nav>
 

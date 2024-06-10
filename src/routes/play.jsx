@@ -100,6 +100,7 @@ function Play({ title }) {
   const getPoolList = async () =>  await contract.methods.pool(0).call()
 
   const getNow = async () =>  await contract.methods.getNow().call()
+
   const getPlayerCount = async () =>  await contract.methods.getTotalPlayer().call()
 
   const getContractBalance = async () =>  await contract.methods.getBalance().call()
@@ -123,10 +124,12 @@ function Play({ title }) {
       var seconds = Math.floor((distance % (1000 * 60)) / 1000)
 
       // Output the result in an element with id="demo"
+      if ( document.querySelectorAll('#date li').length > 0) {
       document.querySelectorAll('#date li')[0].innerHTML = days
       document.querySelectorAll('#date li')[1].innerHTML = hours
       document.querySelectorAll('#date li')[2].innerHTML = minutes
       document.querySelectorAll('#date li')[3].innerHTML = seconds
+      }
 
       // If the count down is over, write some text
       if (distance < 0) {

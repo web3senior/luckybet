@@ -123,7 +123,7 @@ export function AuthProvider({ children }) {
         if (addr !== undefined) {
           setWallet(addr)
           fetchProfile(addr).then((res) => setProfile(res))
-          web3.eth.defaultAccount = auth.wallet
+          web3.eth.defaultAccount = addr
         }
       })
     }
