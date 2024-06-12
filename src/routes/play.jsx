@@ -26,6 +26,7 @@ function Play({ title }) {
   const [playerCount, setPlayercount] = useState(0)
   const [manager, setManager] = useState()
   const [like, setLike] = useState(0)
+  const [winnerCallButton, setWinnerCallButton] = useState(false)
   const auth = useAuth()
   const navigate = useNavigate()
   const params = useParams()
@@ -45,32 +46,30 @@ function Play({ title }) {
   }
 
   const handleBuyTicket = async () => {
+    auth.connectWallet().then(async (addr) => {
+      const t = toast.loading(`Waiting for transaction's confirmation`)
+      const count = document.querySelector(`[name='count']`).value
+      try {
+        return await contract.methods
+          .play('0x0000000000000000000000000000000000000000000000000000000000000001', count)
+          .send({ from: addr, value: _.toWei(count, 'ether') })
+          .then((res) => {
+            console.log(res)
+            toast.dismiss(t)
 
-    auth.connectWallet().then(async addr =>{
+            // Party
+            party.confetti(document.querySelector(`.party-holder`), {
+              count: party.variation.range(20, 40),
+              shapes: ['star', 'roundedSquare'],
+            })
 
-    const t = toast.loading(`Waiting for transaction's confirmation`)
-    const count = document.querySelector(`[name='count']`).value
-    try {
-      return await contract.methods
-        .play('0x0000000000000000000000000000000000000000000000000000000000000001',count)
-        .send({ from: addr ,value: _.toWei(count, 'ether'),})
-        .then((res) => {
-          console.log(res)
-          toast.dismiss(t)
-
-          // Party
-          party.confetti(document.querySelector(`.party-holder`), {
-            count: party.variation.range(20, 40),
-            shapes: ['star', 'roundedSquare'],
+            toast.success(`Your ticket has been purchased 🥳.`)
+            window.location.reload()
           })
-
-          toast.success(`Your ticket has been purchased 🥳.`)
-          window.location.reload()
-        })
-    } catch (error) {
-      console.error(error)
-      toast.dismiss(t)
-    }
+      } catch (error) {
+        console.error(error)
+        toast.dismiss(t)
+      }
     })
   }
 
@@ -92,6 +91,24 @@ function Play({ title }) {
       toast.dismiss(t)
     }
   }
+  const handleWinner = async () => {
+    auth.connectWallet().then(async (addr) => {
+      const t = toast.loading(`Waiting for transaction's confirmation`)
+
+      try {
+        return await contract.methods
+          .winner('0x0000000000000000000000000000000000000000000000000000000000000001', 0)
+          .send({ from: addr })
+          .then((res) => {
+            console.log(res)
+            toast.dismiss(t)
+          })
+      } catch (error) {
+        console.error(error)
+        toast.dismiss(t)
+      }
+    })
+  }
 
   const playClick = () => {
     let audio = new Audio(clickSounds)
@@ -101,13 +118,14 @@ function Play({ title }) {
     }
   }
 
-  const getPoolList = async () =>  await contract.methods.pool(0).call()
+  const getPoolList = async () => await contract.methods.pool(0).call()
 
-  const getNow = async () =>  await contract.methods.getNow().call()
+  const getNow = async () => await contract.methods.getNow().call()
 
-  const getPlayerCount = async () =>  await contract.methods.getTotalPlayer().call()
+  const getPlayerCount = async () => await contract.methods.getTotalPlayer().call()
 
-  const getContractBalance = async () =>  await contract.methods.getBalance().call()
+  const getContractBalance = async () => await contract.methods.getBalance().call()
+  const getPoolWinners = async () => await contract.methods.getPoolWinners().call()
 
   const countDown = (calcTime) => {
     // Set the date we're counting down to
@@ -128,17 +146,18 @@ function Play({ title }) {
       var seconds = Math.floor((distance % (1000 * 60)) / 1000)
 
       // Output the result in an element with id="demo"
-      if ( document.querySelectorAll('#date li').length > 0) {
-      document.querySelectorAll('#date li')[0].innerHTML = days
-      document.querySelectorAll('#date li')[1].innerHTML = hours
-      document.querySelectorAll('#date li')[2].innerHTML = minutes
-      document.querySelectorAll('#date li')[3].innerHTML = seconds
+      if (document.querySelectorAll('#date li').length > 0) {
+        document.querySelectorAll('#date li')[0].innerHTML = days
+        document.querySelectorAll('#date li')[1].innerHTML = hours
+        document.querySelectorAll('#date li')[2].innerHTML = minutes
+        document.querySelectorAll('#date li')[3].innerHTML = seconds
       }
 
       // If the count down is over, write some text
       if (distance < 0) {
         clearInterval(x)
-        document.getElementById('demo').innerHTML = 'EXPIRED'
+        document.querySelector('#date').innerHTML = `<p class="text-white">EXPIRED</p>`
+        setWinnerCallButton(true)
       }
     }, 1000)
   }
@@ -153,14 +172,17 @@ The Gold Rush pool is our grand pool and overall world jackpot. Players worldwid
 </p>
           `)
         break
-        case 'users':
+      case 'users':
+        getPoolWinners().then(res =>{
+console.log(res)
 
-          setModalContent(`
+        })
+        setModalContent(`
   <p>
   The Gold Rush pool is our grand pool and overall world jackpot. Players worldwide can purchase tickets to enter the grand prize jackpot. The Pink Rush pool tickets are premium tickets and are 2 $LYX tokens to enter.
   </p>
             `)
-          break
+        break
       default:
         setModalContent(`Unknown`)
         break
@@ -184,23 +206,23 @@ The Gold Rush pool is our grand pool and overall world jackpot. Players worldwid
 
     getPlayerCount().then((res) => {
       console.log(res)
-    setPlayercount(_.toNumber(res))
+      setPlayercount(_.toNumber(res))
     })
   }, [])
 
   return (
     <>
-           {showModal && (
-          <>
-            <div className={styles.modal}>
-              <div className={styles.modal__content}>
-                <span onMouseDown={() => setShowModal(!showModal)} />
-                <div dangerouslySetInnerHTML={{__html: modalContent}} />
-              </div>
+      {showModal && (
+        <>
+          <div className={styles.modal}>
+            <div className={styles.modal__content}>
+              <span onMouseDown={() => setShowModal(!showModal)} />
+              <div dangerouslySetInnerHTML={{ __html: modalContent }} />
             </div>
-          </>
-        )}
-   {isLoading && <Loading/>}
+          </div>
+        </>
+      )}
+      {isLoading && <Loading />}
       <section className={`${styles.section} s-motion-slideUpIn`}>
         <div className={`${styles.hangbox}`}>
           <span>{pools && pools.length > 0 && pools[0].metadata}</span>
@@ -212,25 +234,32 @@ The Gold Rush pool is our grand pool and overall world jackpot. Players worldwid
             {contractBalance.toLocaleString()} <span>$LYX</span>
           </h1>
           <p className={`text-center`}>Player Count</p>
-          <h1 className={`text-center`}>
-            {playerCount.toLocaleString()}
-          </h1>
-          <ul id={`date`} className={styles.countdown} style={{width: '80vw', maxWidth:'400px'}}>
+          <h1 className={`text-center`}>{playerCount.toLocaleString()}</h1>
+          <ul id={`date`} className={styles.countdown} style={{ width: '80vw', maxWidth: '400px' }}>
             <li>-</li>
             <li>-</li>
             <li>-</li>
             <li>-</li>
           </ul>
 
-          <select name={`count`} style={{width: '40vw', maxWidth:'400px', margin: '0 auto', marginTop:'1rem'}}>
+          <select name={`count`} style={{ width: '40vw', maxWidth: '400px', margin: '0 auto', marginTop: '1rem' }}>
             <option value={1}>1</option>
             <option value={2}>2</option>
             <option value={3}>3</option>
             <option value={4}>4</option>
             <option value={5}>5</option>
           </select>
-          <button onClick={()=>handleBuyTicket()}>Buy Ticket</button>
-          <span className='party-holder'></span>
+
+          <div className={` d-flex flex-row align-items-center justify-content-center`}>
+            <button onClick={() => handleBuyTicket()}>Buy Ticket</button>
+            {winnerCallButton && pools && !pools[0].compeleted && (
+              <>
+                <button onClick={() => handleWinner()}>Winner</button>
+              </>
+            )}
+          </div>
+
+          <span className="party-holder"></span>
         </div>
 
         <ul className={`${styles.nav} d-flex`}>
@@ -254,7 +283,7 @@ The Gold Rush pool is our grand pool and overall world jackpot. Players worldwid
           />
           <li
             onClick={() => {
-             handleShowModal(`play`)
+              handleShowModal(`play`)
             }}
           />
           <li
