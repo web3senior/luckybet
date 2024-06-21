@@ -125,7 +125,7 @@ function Play({ title }) {
   const getPlayerCount = async () => await contract.methods.getTotalPlayer().call()
 
   const getContractBalance = async () => await contract.methods.getBalance().call()
-  const getPoolWinners = async () => await contract.methods.getPoolWinners().call()
+  const getPoolWinners = async (poolId) => await contract.methods.getPoolWinners(poolId).call()
 
   const countDown = (calcTime) => {
     // Set the date we're counting down to
@@ -172,13 +172,13 @@ The Gold Rush pool is our grand pool and overall world jackpot. Players worldwid
 </p>
           `)
         break
-      case 'users':
-        getPoolWinners().then((res) => {
+      case 'winner':
+        getPoolWinners(params.poolId).then((res) => {
           console.log(res)
+          let content=`<p>Winners of the current pool</p>`
+          res.map((item) => (content += `<p>${item}</p>`))
+          setModalContent(`${content}`)
         })
-        setModalContent(`
- ${res.map((item) => <p>{item}</p>)}
-            `)
         break
       default:
         setModalContent(`Unknown`)
@@ -275,17 +275,12 @@ The Gold Rush pool is our grand pool and overall world jackpot. Players worldwid
           <li
             onClick={() => {
               playClick()
-              toast.error(`Will announce the winner soon`)
+              handleShowModal(`winner`)
             }}
           />
           <li
             onClick={() => {
               handleShowModal(`play`)
-            }}
-          />
-          <li
-            onClick={() => {
-              handleShowModal(`users`)
             }}
           />
           {/* <li
