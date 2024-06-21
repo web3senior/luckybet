@@ -12,7 +12,7 @@ export default function Splashscreen() {
       window.setTimeout(() => splashscreenRef.current.remove(), 1700)
     }
   }, [])
-
+  return <></>
   return (
     <section className={`${styles.section} animate__animated`} data-name={import.meta.env.VITE_NAME} ref={splashscreenRef}>
       <figure className={`${styles['logo']}`}>

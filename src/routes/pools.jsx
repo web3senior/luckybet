@@ -5,7 +5,7 @@ import MaterialIcon from './helper/MaterialIcon'
 import Shimmer from './helper/Shimmer'
 import toast, { Toaster } from 'react-hot-toast'
 import { useAuth, web3, _ } from '../contexts/AuthContext'
-import Logo from './../../src/assets/logo.svg'
+import Caveman from './../../src/assets/caveman.png'
 import Web3 from 'web3'
 import ABI from '../abi/luckybet.json'
 import party from 'party-js'
@@ -185,7 +185,7 @@ function Pools({ title }) {
 
   useEffect(() => {
     getPoolList().then(async (res) => {
-      console.log(res);
+      console.log(res)
       setPools([res])
       setIsLoading(false)
     })
@@ -196,15 +196,11 @@ function Pools({ title }) {
       <section className={styles.section}>
         <div className={`__container h-inherit d-flex flex-column align-items-center justify-content-center`} data-width={`large`}>
           <div className={`d-flex flex-column align-items-center justify-content-center mt-10`}>
-            <h3 className='text-white'>Active pool</h3>
-            {pools.map((item, i) => {
-              return (
-                <Link key={i} to={`/play/${item.id}`}>
-                  <button>{item.metadata}</button>
-                </Link>
-              )
-            })}
+            {pools.map((item, i) =>  <Link key={i} to={`/play/${item.id}`}>{item.metadata}</Link>)}
           </div>
+        <figure>
+          <img alt={`Caveman`} src={Caveman} />
+        </figure>
         </div>
       </section>
     </>

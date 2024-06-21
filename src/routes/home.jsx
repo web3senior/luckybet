@@ -278,6 +278,7 @@ If you do not have a Universal Profile follow these steps<br/>
           <figure className={`mb-10`}>
             <img src={WelcomeBox}/>
           </figure>
+          
           <nav className={`d-flex flex-column align-items-center justify-content-center`}>
             <button onClick={() => navigate(`/pools`)}>Pools</button>
             <button onClick={() => handleShowModal('rules')}>Rules</button>

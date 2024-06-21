@@ -5,6 +5,7 @@
   user-select: none;
   background-color: var(--color-primary);
   overflow: hidden;
+isolation: isolate;
   @include small-down() {
     //background: #fd1669;
   }
@@ -14,35 +15,35 @@
     color: #088ae9;
   }
 
-  figure.logo {
-    text-align: center;
+  figure {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+z-index: 1;
+
+    &:after {
+      content: 'Me Want Gold Rush';
+      position: absolute;
+      left: -4rem;
+      top: -1rem;
+      background-color: #d0511181;
+      color: var(--white);
+      padding: 1rem 1.5rem;
+      border-radius: 999px;
+      animation: floating 4s linear infinite alternate;
+    }
 
     img {
       margin: 0 auto;
-      width: 75px;
-    }
-
-    figcaption {
-      text-align: center;
-      font-weight: bold;
-      margin-top: 1rem;
-      font-size: 16px;
+      width: 40vw;
     }
   }
 
-  p.message {
-    opacity: 0.9;
-    text-wrap: balance;
-    text-align: center;
-    line-height: 20px;
-    font-size: 12px;
-
-    @include small-down() {
-      font-size: 13px;
-    }
-  }
-
-  button {
+  a {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -60,11 +61,8 @@
     background-size: contain;
     background-repeat: no-repeat;
     border: none;
+    z-index: 999;
     cursor: pointer;
-
-    &:active {
-      transform: scale(0.95);
-    }
 
     &:focus {
       outline: none;
@@ -103,45 +101,14 @@
   }
 }
 
-.modal {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(8px);
-  padding: 2rem;
-  z-index: 999;
-  isolation: isolate;
-  font-family: Open Sans;
-
-  &__content {
-    position: relative;
-    width: 100%;
-    color: var(--white);
-    font-size: 3.1vw;
-    opacity: 0.6;
-    text-align: justify;
-    text-wrap: balance;
-
-    span {
-      position: relative;
-      left: 0;
-      margin-bottom: 1rem;
-      display: block;
-      width: 80px;
-      height: 80px;
-      color: var(--white);
-      background-image: url('./../assets/icon-arrow.svg');
-      background-position: center;
-      background-size: contain;
-      background-repeat: no-repeat;
-      cursor: pointer;
-
-      &:active {
-        transform: scale(0.8);
-      }
-    }
+@keyframes floating {
+  0% {
+    transform: translate(0, -0.1rem) rotate(-25deg);
+  }
+  50% {
+    transform: translate(0, 0.8rem) rotate(-25deg);
+  }
+  100% {
+    transform: translate(0, -0.1rem) rotate(-25deg);
   }
 }
