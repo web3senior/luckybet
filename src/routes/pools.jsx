@@ -196,11 +196,15 @@ function Pools({ title }) {
       <section className={styles.section}>
         <div className={`__container h-inherit d-flex flex-column align-items-center justify-content-center`} data-width={`large`}>
           <div className={`d-flex flex-column align-items-center justify-content-center mt-10`}>
-            {pools.map((item, i) =>  <Link key={i} to={`/play/${item.id}`}>{item.metadata}</Link>)}
+            {pools.map((item, i) => (
+              <Link key={i} to={`/play/${item.id}`}>
+                {item.metadata}
+              </Link>
+            ))}
           </div>
-        <figure>
-          <img alt={`Caveman`} src={Caveman} />
-        </figure>
+          <figure>
+            <img alt={`Caveman`} src={Caveman} />
+          </figure>
         </div>
       </section>
     </>

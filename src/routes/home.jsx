@@ -275,7 +275,7 @@ If you do not have a Universal Profile follow these steps<br/>
         </div>
 
         <div className={`__container h-inherit d-flex flex-column align-items-center justify-content-center`} data-width={`large`}>
-          <figure className={`mb-10`}>
+          <figure className={`mb-40`}>
             <img src={WelcomeBox}/>
           </figure>
           
