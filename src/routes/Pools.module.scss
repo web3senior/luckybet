@@ -11,7 +11,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    bottom: 2rem;
+    bottom: 5rem;
     background: url('./../assets/gold-coin-bg.png');
     background-repeat: no-repeat;
     background-position: center bottom;
@@ -27,24 +27,11 @@
     color: #088ae9;
   }
 
-  figure {
+  figure.caveman {
     position: absolute;
-    right: 30%;
-    bottom: 2rem;
+    right: 8rem;
+    bottom: 5rem;
     z-index: 1;
-
-    &:after {
-      content: 'I Want Gold Rush';
-      position: absolute;
-      left: -4rem;
-      top: -1rem;
-      background-color: #d0511181;
-      color: var(--white);
-      padding: 1rem 1.5rem;
-      border-radius: 999px;
-      animation: floating 4s linear infinite alternate;
-    }
-
     img {
       margin: 0 auto;
       width: 15vw;
@@ -53,10 +40,6 @@
   }
 
   a {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -123,5 +106,37 @@
   }
   100% {
     transform: translate(0, -0.1rem) rotate(-25deg);
+  }
+}
+
+.bubble {
+  position: absolute;
+  width: 200px;
+  height: 35%;
+  right: -3rem;
+  top: -7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 2vmin;
+  background: #ffd;
+  box-shadow: 0 -0.25vmin, 0 0.125vmin;
+  z-index: 999;
+  border: 0.1vmin solid black;
+  border-radius: 100%;
+font-family: 'Open Sans', Courier, monospace;
+font-weight: 500;
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    bottom: -51%;
+    border-radius: 50%;
+    left: 10%;
+    box-shadow: 0.5vmin 0, 2vmin -0.5vmin #ffd, 2vmin -0.5vmin 0 0.5vmin;
+    clip-path: polygon(0% 49%, 150% 48%, 150% 100%, 0% 100%);
   }
 }

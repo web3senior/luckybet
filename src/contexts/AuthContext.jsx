@@ -11,7 +11,7 @@ import ABI from '../abi/luckybet.json'
 export const PROVIDER = window.lukso
 export const web3 = new Web3(PROVIDER)
 export const _ = web3.utils
-export const contract = new web3.eth.Contract(ABI, import.meta.env.VITE_LUCKYBET_CONTRACT_TESTNET)
+export const contract = new web3.eth.Contract(ABI, import.meta.env.VITE_LUCKYBET_CONTRACT_MAINNET)
 export const AuthContext = React.createContext()
 export function useAuth() {
   return useContext(AuthContext)

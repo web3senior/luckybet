@@ -9,6 +9,7 @@ import Caveman from './../../src/assets/caveman.png'
 import Web3 from 'web3'
 import ABI from '../abi/luckybet.json'
 import party from 'party-js'
+import WelcomeBox from './../../src/assets/welcome-box.png'
 import DappDefaultIcon from './../assets/dapp-default-icon.svg'
 import styles from './Pools.module.scss'
 
@@ -194,16 +195,21 @@ function Pools({ title }) {
   return (
     <>
       <section className={styles.section}>
-        <div className={`__container h-inherit d-flex flex-column align-items-center justify-content-center`} data-width={`large`}>
+        <div className={`__container h-inherit d-flex flex-column align-items-center justify-content-start pt-80`} data-width={`large`}>
           <div className={`d-flex flex-column align-items-center justify-content-center mt-10`}>
+          <figure className={`mb-40`}>
+            <img src={WelcomeBox}/>
+          </figure>
+          
             {pools.map((item, i) => (
               <Link key={i} to={`/play/${item.id}`}>
                 {item.metadata}
               </Link>
             ))}
           </div>
-          <figure>
+          <figure className={`${styles['caveman']}`}>
             <img alt={`Caveman`} src={Caveman} />
+            <div className={`${styles['bubble']}`}>Me Want Gold Rush</div>
           </figure>
         </div>
       </section>
