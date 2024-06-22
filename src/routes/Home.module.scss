@@ -129,6 +129,7 @@
   z-index: 999;
   isolation: isolate;
   font-family: Open Sans;
+  overflow-y: scroll;
 
   &__content {
     position: relative;
