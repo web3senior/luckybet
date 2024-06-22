@@ -15,12 +15,13 @@
     background: url('./../assets/gold-coin-bg.png');
     background-repeat: no-repeat;
     background-position: center bottom;
-    background-size: 30vw;
+    background-size: 30vw;  
+    @include small-down() {
+      background-size: 200px; 
+    }
   }
 
-  @include small-down() {
-    //background: #fd1669;
-  }
+
 
   a {
     font-weight: bold;
