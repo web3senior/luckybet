@@ -8,7 +8,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import Web3 from 'web3'
 import ABI from '../abi/luckybet.json'
 
-export const PROVIDER = import.meta.env.VITE_RPC_URL
+export const PROVIDER = window.lukso || import.meta.env.VITE_RPC_URL
 export const web3 = new Web3(PROVIDER)
 export const _ = web3.utils
 export const contract = new web3.eth.Contract(ABI, import.meta.env.VITE_LUCKYBET_CONTRACT_MAINNET)
