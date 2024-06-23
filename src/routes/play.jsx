@@ -230,8 +230,6 @@ The Gold Rush pool is our grand pool and overall world jackpot. Players worldwid
           <h1 className={`text-center`}>
             {contractBalance.toLocaleString()} <span>$LYX</span>
           </h1>
-          <p className={`text-center`}>Player Count</p>
-          <h1 className={`text-center`}>{playerCount.toLocaleString()}</h1>
           <ul id={`date`} className={styles.countdown} style={{ width: '80vw', maxWidth: '400px' }}>
             <li>-</li>
             <li>-</li>
