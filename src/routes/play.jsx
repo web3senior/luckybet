@@ -97,7 +97,7 @@ function Play({ title }) {
 
       try {
         return await contract.methods
-          .winner('0x0000000000000000000000000000000000000000000000000000000000000001', 1)
+          .winner('0x0000000000000000000000000000000000000000000000000000000000000001', 5)
           .send({ from: addr })
           .then((res) => {
             console.log(res)
