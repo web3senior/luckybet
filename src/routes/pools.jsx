@@ -143,7 +143,7 @@ function Pools({ title }) {
   const getPoolList = async () => {
     web3.eth.defaultAccount = auth.wallet
     const contract = new web3.eth.Contract(ABI, import.meta.env.VITE_LUCKYBET_CONTRACT_MAINNET)
-    return await contract.methods.pool(0).call()
+    return await contract.methods.pool(1).call()
   }
 
   const getLike = async (appId) => {

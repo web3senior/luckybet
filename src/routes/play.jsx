@@ -51,7 +51,7 @@ function Play({ title }) {
       const count = document.querySelector(`[name='count']`).value
       try {
         return await contract.methods
-          .play('0x0000000000000000000000000000000000000000000000000000000000000001', count)
+          .play('0x0000000000000000000000000000000000000000000000000000000000000002', count)
           .send({ from: addr, value: _.toWei(count, 'ether') })
           .then((res) => {
             console.log(res)
@@ -97,7 +97,7 @@ function Play({ title }) {
 
       try {
         return await contract.methods
-          .winner('0x0000000000000000000000000000000000000000000000000000000000000001', 5)
+          .winner('0x0000000000000000000000000000000000000000000000000000000000000002', 5)
           .send({ from: addr })
           .then((res) => {
             console.log(res)
@@ -118,7 +118,7 @@ function Play({ title }) {
     }
   }
 
-  const getPoolList = async () => await contract.methods.pool(0).call()
+  const getPoolList = async () => await contract.methods.pool(1).call()
 
   const getNow = async () => await contract.methods.getNow().call()
 
