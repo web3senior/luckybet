@@ -166,16 +166,14 @@ function Play({ title }) {
     setShowModal((showModal) => !showModal)
     switch (action) {
       case 'play':
-        setModalContent(`
-<p>
-The Gold Rush pool is our grand pool and overall world jackpot. Players worldwide can purchase tickets to enter the grand prize jackpot. The Pink Rush pool tickets are premium tickets and are 2 $LYX tokens to enter.
-</p>
-          `)
+        setModalContent(
+          `<p>The Gold Rush pool is our grand pool and overall world jackpot. Players worldwide can purchase tickets to enter the grand prize jackpot. The Pink Rush pool tickets are premium tickets and are 2 $LYX tokens to enter.</p>`
+        )
         break
       case 'winner':
         getPoolWinners(params.poolId).then((res) => {
           console.log(res)
-          let content=`<p>Winners of the current pool</p>`
+          let content = `<p>Winners of the current pool</p>`
           res.map((item) => (content += `<p>${item}</p>`))
           setModalContent(`${content}`)
         })
